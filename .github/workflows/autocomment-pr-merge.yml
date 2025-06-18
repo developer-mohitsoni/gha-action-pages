@@ -1,15 +1,12 @@
 name: Auto Comment on PR Merged
 
 on:
-  pull_request:
+  pull_request_target:
     types: [closed]
 
 permissions:
-  # Grant write permissions for issues to allow commenting on pull requests
   issues: write
-  # Grant write permissions for contents to allow access to repository content
-  contents: write
-  # Grant write permissions for pull requests to allow commenting
+  contents: read
   pull-requests: write
 
 jobs:
