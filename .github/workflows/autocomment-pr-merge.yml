@@ -1,0 +1,30 @@
+name: Auto Comment on PR Merged
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  # Grant write permissions for issues to allow commenting on pull requests
+  issues: write
+  # Grant write permissions for contents to allow access to repository content
+  contents: write
+  # Grant write permissions for pull requests to allow commenting
+  pull-requests: write
+
+jobs:
+  comment:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on merged PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "🎉 This pull request has been merged. Thanks for your contribution!"
+            });
