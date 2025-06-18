@@ -4,6 +4,12 @@ on:
   issues:
     types: [assigned]
 
+permissions:
+  # Grant write permissions for issues to allow commenting on issues
+  issues: write
+  # Grant write permissions for contents to allow access to repository content
+  contents: write
+
 jobs:
   comment:
     runs-on: ubuntu-latest
