@@ -5,7 +5,9 @@ on:
     types: [opened]
 
 permissions:
-  contents: write
+  issues: write
+  contents: read
+  pull-requests: write
 
 jobs:
   comment:
